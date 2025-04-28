@@ -280,4 +280,12 @@ public class AjoutDialog extends javax.swing.JDialog {
     public String getPassword() {
         return this.jTextPassword.getText();
     }
+
+    public void setDefaultTextfieldData() {
+        this.jTextNom.setText("");
+        this.JTextPrenom.setText("");
+        this.jMail.setText("");
+        this.JTextIdentifiant.setText("");
+        this.jTextPassword.setText("");
+    }
 }

@@ -45,6 +45,7 @@ public class MainControl implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
             case "ajoutUser":
+                this.ajoutDialog.setDefaultTextfieldData();
                 this.ajoutDialog.setVisible(true);
                 break;
             case "deleteUser":
