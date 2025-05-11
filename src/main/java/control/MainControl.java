@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.MailValidator;
 import model.User;
 import model.UserListModel;
 import view.MainView;
@@ -29,6 +30,7 @@ public class MainControl implements PropertyChangeListener {
     private ModifDialog modifDialog;
     private UserListModel userListModel;
     private AjoutDialog ajoutDialog;
+    private MailValidator mailValidator;
 //    private UtilisateurDAO 
 
     public MainControl(MainView v) {
@@ -36,6 +38,7 @@ public class MainControl implements PropertyChangeListener {
         this.view.addPropertyChangeListener(this);
         this.userListModel = new UserListModel();
         this.view.setTableModel(userListModel);
+        this.mailValidator = new MailValidator();
 
         this.ajoutDialog = new AjoutDialog(this.view, true);
         this.ajoutDialog.addPropertyChangeListener(this);
@@ -63,7 +66,7 @@ public class MainControl implements PropertyChangeListener {
                         JOptionPane.showMessageDialog(this.view, "Aucun utilisateur sélectionné");
                     }
                     break;
-                } 
+                }
                 // Retourne l'option choisie par l'utilisateur en int.
                 int confirm = JOptionPane.showConfirmDialog(
                         this.view,
@@ -99,7 +102,7 @@ public class MainControl implements PropertyChangeListener {
                 break;
 
             case "updateUser": // Effectue la méthode update dans le model userList qui va exécuter la méthode delete de UtilisateurDAO avec les données fournies.
-                if (Arrays.equals(modifDialog.getPassword(), modifDialog.getVerifPassword())) {
+                if (Arrays.equals(modifDialog.getPassword(), modifDialog.getVerifPassword()) && this.mailValidator.validate(ajoutDialog.getEmail().trim())) {
                     userListModel.update(
                             modifDialog.getId(),
                             modifDialog.getNom(),
@@ -109,6 +112,12 @@ public class MainControl implements PropertyChangeListener {
                             String.valueOf(modifDialog.getPassword()));
 
                     modifDialog.setVisible(false);
+                } else if (!mailValidator.validate(modifDialog.getEmail().trim())) {
+                    try {
+                        throw new Exception("Le format du mail n'est pas correct");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
+                    }
                 } else {
                     try {
                         throw new Exception("Mots de passes non identiques");
@@ -119,7 +128,7 @@ public class MainControl implements PropertyChangeListener {
                 break;
 
             case "validNewUser":
-                if (Arrays.equals(ajoutDialog.getPassword(), ajoutDialog.getPasswordVerif())) {
+                if (Arrays.equals(ajoutDialog.getPassword(), ajoutDialog.getPasswordVerif()) && this.mailValidator.validate(ajoutDialog.getEmail())) {
                     userListModel.create(
                             ajoutDialog.getNom(),
                             ajoutDialog.getPrenom(),
@@ -128,6 +137,12 @@ public class MainControl implements PropertyChangeListener {
                             String.valueOf(ajoutDialog.getPassword())
                     );
                     ajoutDialog.setVisible(false);
+                } else if (!mailValidator.validate(ajoutDialog.getEmail())) {
+                    try {
+                        throw new Exception("Le format du mail n'est pas correct");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
+                    }
                 } else {
                     try {
                         throw new Exception("Mots de passes non identiques");
@@ -135,8 +150,8 @@ public class MainControl implements PropertyChangeListener {
                         JOptionPane.showMessageDialog(this.view, "Mots de passes non identiques");
                     }
                 }
-
                 break;
+
         }
     }
 }

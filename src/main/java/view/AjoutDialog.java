@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.event.ItemEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -50,6 +51,8 @@ public class AjoutDialog extends javax.swing.JDialog {
         jMail = new javax.swing.JFormattedTextField();
         verifPasswordFieldAdd = new javax.swing.JPasswordField();
         verifPasswordLabelAdd = new javax.swing.JLabel();
+        checkboxPassword = new javax.swing.JCheckBox();
+        checkboxVerif = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -109,6 +112,20 @@ public class AjoutDialog extends javax.swing.JDialog {
 
         verifPasswordLabelAdd.setText("Vérification du mot de passe :");
 
+        checkboxPassword.setText("Montrer le mot de passe");
+        checkboxPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPasswordActionPerformed(evt);
+            }
+        });
+
+        checkboxVerif.setText("Montrer le mot de passe");
+        checkboxVerif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxVerifActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,13 +150,17 @@ public class AjoutDialog extends javax.swing.JDialog {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTextPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                            .addComponent(JTextPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                             .addComponent(jTextNom)
                             .addComponent(jMail)
                             .addComponent(jTextPassword)
                             .addComponent(JTextIdentifiant)
                             .addComponent(verifPasswordFieldAdd))))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkboxPassword)
+                    .addComponent(checkboxVerif))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +184,13 @@ public class AjoutDialog extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPassword)
-                    .addComponent(jTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkboxPassword))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(verifPasswordFieldAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(verifPasswordLabelAdd))
+                    .addComponent(verifPasswordLabelAdd)
+                    .addComponent(checkboxVerif))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JAjouter)
@@ -218,6 +241,22 @@ public class AjoutDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMailActionPerformed
 
+    private void checkboxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPasswordActionPerformed
+        if (checkboxPassword.isSelected()) {
+            jTextPassword.setEchoChar((char) 0);
+        } else {
+            jTextPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_checkboxPasswordActionPerformed
+
+    private void checkboxVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxVerifActionPerformed
+        if (checkboxVerif.isSelected()) {
+            verifPasswordFieldAdd.setEchoChar((char) 0);
+        } else {
+            verifPasswordFieldAdd.setEchoChar('*');
+        }
+    }//GEN-LAST:event_checkboxVerifActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -266,6 +305,8 @@ public class AjoutDialog extends javax.swing.JDialog {
     private javax.swing.JTextField JTextIdentifiant;
     private javax.swing.JTextField JTextPrenom;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox checkboxPassword;
+    private javax.swing.JCheckBox checkboxVerif;
     private javax.swing.JLabel jIdentifiant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JFormattedTextField jMail;
@@ -290,7 +331,7 @@ public class AjoutDialog extends javax.swing.JDialog {
     }
 
     public String getIdentifiant() {
-        return this.jMail.getText();
+        return this.JTextIdentifiant.getText();
     }
 
     public char[] getPassword() {
@@ -305,7 +346,7 @@ public class AjoutDialog extends javax.swing.JDialog {
         this.jTextNom.setText("");
         this.JTextPrenom.setText("");
         this.jMail.setText("");
-        this.jMail.setText("");
+        this.JTextIdentifiant.setText("");
         this.jTextPassword.setText("");
         this.verifPasswordFieldAdd.setText("");
     }

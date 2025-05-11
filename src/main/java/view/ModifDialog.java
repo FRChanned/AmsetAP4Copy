@@ -53,6 +53,8 @@ public class ModifDialog extends javax.swing.JDialog {
         textFieldPassword = new javax.swing.JPasswordField();
         verifPasswordLabelModif = new javax.swing.JLabel();
         verifPasswordFieldModif = new javax.swing.JPasswordField();
+        checkboxPasswordModif = new javax.swing.JCheckBox();
+        checkboxVerifModif = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -82,6 +84,20 @@ public class ModifDialog extends javax.swing.JDialog {
 
         verifPasswordLabelModif.setText("Vérification mot de passe :");
 
+        checkboxPasswordModif.setText("Montrer le mot de passe");
+        checkboxPasswordModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPasswordModifActionPerformed(evt);
+            }
+        });
+
+        checkboxVerifModif.setText("Montrer le mot de passe");
+        checkboxVerifModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxVerifModifActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,13 +120,17 @@ public class ModifDialog extends javax.swing.JDialog {
                             .addComponent(textFieldMail)
                             .addComponent(textFieldIdentifiant)
                             .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
-                            .addComponent(verifPasswordFieldModif)))
+                            .addComponent(verifPasswordFieldModif))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkboxPasswordModif)
+                            .addComponent(checkboxVerifModif)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(410, 410, 410)
                         .addComponent(updateButton1)
                         .addGap(93, 93, 93)
                         .addComponent(cancelButton)))
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,11 +154,13 @@ public class ModifDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkboxPasswordModif))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(verifPasswordLabelModif)
-                    .addComponent(verifPasswordFieldModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(verifPasswordFieldModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkboxVerifModif))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton1)
@@ -158,6 +180,22 @@ public class ModifDialog extends javax.swing.JDialog {
     private void updateButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButton1ActionPerformed
         listeners.firePropertyChange("updateUser", null, null);
     }//GEN-LAST:event_updateButton1ActionPerformed
+
+    private void checkboxPasswordModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPasswordModifActionPerformed
+        if (checkboxPasswordModif.isSelected()) {
+            textFieldPassword.setEchoChar((char) 0);
+        } else {
+            textFieldPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_checkboxPasswordModifActionPerformed
+
+    private void checkboxVerifModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxVerifModifActionPerformed
+        if (checkboxVerifModif.isSelected()) {
+            verifPasswordFieldModif.setEchoChar((char) 0);
+        } else {
+            verifPasswordFieldModif.setEchoChar('*');
+        }
+    }//GEN-LAST:event_checkboxVerifModifActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +241,8 @@ public class ModifDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JCheckBox checkboxPasswordModif;
+    private javax.swing.JCheckBox checkboxVerifModif;
     private javax.swing.JLabel identifiantLabel;
     private javax.swing.JLabel mailLabel;
     private javax.swing.JLabel nomLabel;
