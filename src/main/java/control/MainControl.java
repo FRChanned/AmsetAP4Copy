@@ -87,6 +87,7 @@ public class MainControl implements PropertyChangeListener {
 
             case "openModifDialog": // Affiche le dialog avec toute les données de l'utilisateur dedans.
                 try {
+                    this.modifDialog.setDefaultVerifState();
                     modifDialog.setId(this.view.getSelectedId());
                     modifDialog.setNom(this.view.getSelectedNom());
                     modifDialog.setPrenom(this.view.getSelectedPrenom());
@@ -102,53 +103,51 @@ public class MainControl implements PropertyChangeListener {
                 break;
 
             case "updateUser": // Effectue la méthode update dans le model userList qui va exécuter la méthode delete de UtilisateurDAO avec les données fournies.
-                if (Arrays.equals(modifDialog.getPassword(), modifDialog.getVerifPassword()) && this.mailValidator.validate(ajoutDialog.getEmail().trim())) {
-                    userListModel.update(
-                            modifDialog.getId(),
-                            modifDialog.getNom(),
-                            modifDialog.getPrenom(),
-                            modifDialog.getEmail(),
-                            modifDialog.getIdentifiant(),
-                            String.valueOf(modifDialog.getPassword()));
-
-                    modifDialog.setVisible(false);
-                } else if (!mailValidator.validate(modifDialog.getEmail().trim())) {
-                    try {
-                        throw new Exception("Le format du mail n'est pas correct");
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
-                    }
-                } else {
-                    try {
-                        throw new Exception("Mots de passes non identiques");
-                    } catch (Exception e) {
+                switch (this.modifDialog.verifForm()) {
+                    case 1:
+                        JOptionPane.showMessageDialog(this.view, "Champs de saisie vides");
+                        break;
+                    case 2:
                         JOptionPane.showMessageDialog(this.view, "Mots de passes non identiques");
-                    }
+                        break;
+                    case 3:
+                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
+                        break;
+                    case 4:
+                        userListModel.update(
+                                modifDialog.getId(),
+                                modifDialog.getNom(),
+                                modifDialog.getPrenom(),
+                                modifDialog.getEmail(),
+                                modifDialog.getIdentifiant(),
+                                String.valueOf(modifDialog.getPassword()));
+
+                        modifDialog.setVisible(false);
+                        break;
                 }
                 break;
 
             case "validNewUser":
-                if (Arrays.equals(ajoutDialog.getPassword(), ajoutDialog.getPasswordVerif()) && this.mailValidator.validate(ajoutDialog.getEmail())) {
-                    userListModel.create(
-                            ajoutDialog.getNom(),
-                            ajoutDialog.getPrenom(),
-                            ajoutDialog.getEmail(),
-                            ajoutDialog.getIdentifiant(),
-                            String.valueOf(ajoutDialog.getPassword())
-                    );
-                    ajoutDialog.setVisible(false);
-                } else if (!mailValidator.validate(ajoutDialog.getEmail())) {
-                    try {
-                        throw new Exception("Le format du mail n'est pas correct");
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
-                    }
-                } else {
-                    try {
-                        throw new Exception("Mots de passes non identiques");
-                    } catch (Exception e) {
+                switch (this.ajoutDialog.verifForm()) {
+                    case 1:
+                        JOptionPane.showMessageDialog(this.view, "Champs de saisie vides");
+                        break;
+                    case 2:
                         JOptionPane.showMessageDialog(this.view, "Mots de passes non identiques");
-                    }
+                        break;
+                    case 3:
+                        JOptionPane.showMessageDialog(this.view, "Le format du mail n'est pas correct");
+                        break;
+                    case 4:
+                        userListModel.create(
+                                ajoutDialog.getNom(),
+                                ajoutDialog.getPrenom(),
+                                ajoutDialog.getEmail(),
+                                ajoutDialog.getIdentifiant(),
+                                String.valueOf(ajoutDialog.getPassword()));
+
+                        ajoutDialog.setVisible(false);
+                        break;
                 }
                 break;
 

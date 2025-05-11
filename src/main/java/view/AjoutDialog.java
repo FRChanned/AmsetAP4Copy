@@ -7,6 +7,7 @@ package view;
 import java.awt.event.ItemEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import model.MailValidator;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.beans.PropertyChangeSupport;
 public class AjoutDialog extends javax.swing.JDialog {
 
     private PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+    private MailValidator mailValidator;
 
     public void addPropertyChangeListener(PropertyChangeListener l) {
         this.listeners.addPropertyChangeListener(l);
@@ -26,6 +28,8 @@ public class AjoutDialog extends javax.swing.JDialog {
     public AjoutDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.mailValidator = new MailValidator();
     }
 
     /**
@@ -337,7 +341,7 @@ public class AjoutDialog extends javax.swing.JDialog {
     public char[] getPassword() {
         return this.jTextPassword.getPassword();
     }
-    
+
     public char[] getPasswordVerif() {
         return this.verifPasswordFieldAdd.getPassword();
     }
@@ -349,5 +353,25 @@ public class AjoutDialog extends javax.swing.JDialog {
         this.JTextIdentifiant.setText("");
         this.jTextPassword.setText("");
         this.verifPasswordFieldAdd.setText("");
+        this.jTextPassword.setEchoChar('*');
+        this.verifPasswordFieldAdd.setEchoChar('*');
+        this.checkboxPassword.setSelected(false);
+        this.checkboxVerif.setSelected(false);
+    }
+
+    public int verifForm() {
+        if (JTextIdentifiant.getText().equals("")
+                || jTextNom.getText().equals("")
+                || JTextPrenom.getText().equals("")
+                || jMail.getText().equals("")
+                || String.valueOf(this.jTextPassword.getPassword()).equals("")) {
+            return 1;
+        } else if (!String.valueOf(this.jTextPassword.getPassword()).equals(String.valueOf(this.verifPasswordFieldAdd.getPassword()))) {
+            return 2;
+        } else if (!mailValidator.validate(this.getEmail().trim())) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
 }

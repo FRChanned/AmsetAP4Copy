@@ -4,9 +4,9 @@
  */
 package view;
 
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import model.MailValidator;
 import model.UserListModel;
 
 /**
@@ -14,8 +14,9 @@ import model.UserListModel;
  * @author m.perot
  */
 public class ModifDialog extends javax.swing.JDialog {
-    
+
     private int id;
+    private MailValidator mailValidator;
     /**
      * Creates new form ModifDialog
      */
@@ -28,6 +29,8 @@ public class ModifDialog extends javax.swing.JDialog {
     public ModifDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        this.mailValidator = new MailValidator();
     }
 
     /**
@@ -259,7 +262,7 @@ public class ModifDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void setId(Object id) {
-        this.id = (int)id;
+        this.id = (int) id;
     }
 
     public int getId() {
@@ -305,8 +308,34 @@ public class ModifDialog extends javax.swing.JDialog {
     public char[] getPassword() {
         return this.textFieldPassword.getPassword();
     }
-    
+
     public char[] getVerifPassword() {
         return this.verifPasswordFieldModif.getPassword();
+    }
+
+    public void setDefaultVerifState() {
+        this.textFieldPassword.setEchoChar('*');
+        this.verifPasswordFieldModif.setEchoChar('*');
+
+        this.checkboxPasswordModif.setSelected(false);
+        this.checkboxVerifModif.setSelected(false);
+        
+        this.verifPasswordFieldModif.setText("");
+    }
+
+    public int verifForm() {
+        if (textFieldIdentifiant.getText().equals("")
+                || textFieldName.getText().equals("")
+                || textFieldPrenom.getText().equals("")
+                || textFieldMail.getText().equals("")
+                || String.valueOf(this.textFieldPassword.getPassword()).equals("")) {
+            return 1;
+        } else if (!String.valueOf(this.textFieldPassword.getPassword()).equals(String.valueOf(this.verifPasswordFieldModif.getPassword()))) {
+            return 2;
+        } else if (!mailValidator.validate(this.getEmail().trim())) {
+            return 3;
+        } else {
+            return 4;
+        }
     }
 }
