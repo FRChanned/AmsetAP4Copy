@@ -47,7 +47,9 @@ public class AjoutDialog extends javax.swing.JDialog {
         jTextPassword = new javax.swing.JPasswordField();
         cancelButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jMail = new javax.swing.JTextField();
+        jMail = new javax.swing.JFormattedTextField();
+        verifPasswordFieldAdd = new javax.swing.JPasswordField();
+        verifPasswordLabelAdd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -105,6 +107,8 @@ public class AjoutDialog extends javax.swing.JDialog {
             }
         });
 
+        verifPasswordLabelAdd.setText("Vérification du mot de passe :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,39 +116,42 @@ public class AjoutDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPassword)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jPrenom)
-                                .addComponent(JNom)
-                                .addComponent(jIdentifiant)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JTextPrenom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                            .addComponent(jTextNom, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextPassword, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jMail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTextIdentifiant)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(264, 264, 264)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(JAjouter)
-                        .addGap(43, 43, 43)
-                        .addComponent(cancelButton)))
-                .addContainerGap(291, Short.MAX_VALUE))
+                        .addGap(65, 65, 65)
+                        .addComponent(cancelButton)
+                        .addGap(117, 117, 117))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(verifPasswordLabelAdd)
+                            .addComponent(jIdentifiant)
+                            .addComponent(jPrenom)
+                            .addComponent(JNom)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JTextPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                            .addComponent(jTextNom)
+                            .addComponent(jMail)
+                            .addComponent(jTextPassword)
+                            .addComponent(JTextIdentifiant)
+                            .addComponent(verifPasswordFieldAdd))))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(135, 135, 135)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(143, 143, 143)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JNom))
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPrenom)
-                    .addComponent(JTextPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JTextPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPrenom))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -157,14 +164,21 @@ public class AjoutDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPassword)
                     .addComponent(jTextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(105, 105, 105)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verifPasswordFieldAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(verifPasswordLabelAdd))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JAjouter)
                     .addComponent(cancelButton))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JAjouter, JNom, JTextIdentifiant, JTextPrenom, cancelButton, jIdentifiant, jLabel1, jMail, jPassword, jPrenom, jTextNom, jTextPassword, verifPasswordFieldAdd, verifPasswordLabelAdd});
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNomActionPerformed
@@ -254,11 +268,13 @@ public class AjoutDialog extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jIdentifiant;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jMail;
+    private javax.swing.JFormattedTextField jMail;
     private javax.swing.JLabel jPassword;
     private javax.swing.JLabel jPrenom;
     private javax.swing.JTextField jTextNom;
     private javax.swing.JPasswordField jTextPassword;
+    private javax.swing.JPasswordField verifPasswordFieldAdd;
+    private javax.swing.JLabel verifPasswordLabelAdd;
     // End of variables declaration//GEN-END:variables
 
     public String getNom() {
@@ -274,18 +290,23 @@ public class AjoutDialog extends javax.swing.JDialog {
     }
 
     public String getIdentifiant() {
-        return this.JTextIdentifiant.getText();
+        return this.jMail.getText();
     }
 
-    public String getPassword() {
-        return this.jTextPassword.getText();
+    public char[] getPassword() {
+        return this.jTextPassword.getPassword();
+    }
+    
+    public char[] getPasswordVerif() {
+        return this.verifPasswordFieldAdd.getPassword();
     }
 
     public void setDefaultTextfieldData() {
         this.jTextNom.setText("");
         this.JTextPrenom.setText("");
         this.jMail.setText("");
-        this.JTextIdentifiant.setText("");
+        this.jMail.setText("");
         this.jTextPassword.setText("");
+        this.verifPasswordFieldAdd.setText("");
     }
 }

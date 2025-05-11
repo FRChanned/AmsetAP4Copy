@@ -8,6 +8,7 @@ import DAO.UtilisateurDAO;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import view.MainView;
@@ -48,7 +49,7 @@ public class UserListModel extends AbstractTableModel {
     
     
     public void create(String nom,String prenom, String mail, String identifiant, String password){
-         this.userData.create(new User(nom, prenom, mail, identifiant, password));// elle crée un nouvel objet User  
+        this.userData.create(new User(nom, prenom, mail, identifiant, password));// elle crée un nouvel objet User  
         this.userList = this.userData.getAll(); // Elle met à jours la table.
         this.fireTableDataChanged(); // Notifier l’interface graphique
     }

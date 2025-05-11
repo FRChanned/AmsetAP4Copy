@@ -51,6 +51,8 @@ public class ModifDialog extends javax.swing.JDialog {
         cancelButton = new javax.swing.JButton();
         updateButton1 = new javax.swing.JButton();
         textFieldPassword = new javax.swing.JPasswordField();
+        verifPasswordLabelModif = new javax.swing.JLabel();
+        verifPasswordFieldModif = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,6 +80,8 @@ public class ModifDialog extends javax.swing.JDialog {
             }
         });
 
+        verifPasswordLabelModif.setText("Vérification mot de passe :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,20 +89,22 @@ public class ModifDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
+                        .addGap(193, 193, 193)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(prenomLabel)
                             .addComponent(mailLabel)
                             .addComponent(nomLabel)
                             .addComponent(identifiantLabel)
-                            .addComponent(passwordLabel))
+                            .addComponent(passwordLabel)
+                            .addComponent(verifPasswordLabelModif))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textFieldName)
                             .addComponent(textFieldPrenom)
                             .addComponent(textFieldMail)
                             .addComponent(textFieldIdentifiant)
-                            .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textFieldPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                            .addComponent(verifPasswordFieldModif)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(410, 410, 410)
                         .addComponent(updateButton1)
@@ -109,7 +115,7 @@ public class ModifDialog extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addContainerGap(127, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,7 +135,11 @@ public class ModifDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verifPasswordLabelModif)
+                    .addComponent(verifPasswordFieldModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton1)
                     .addComponent(cancelButton))
@@ -204,6 +214,8 @@ public class ModifDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField textFieldPassword;
     private javax.swing.JTextField textFieldPrenom;
     private javax.swing.JButton updateButton1;
+    private javax.swing.JPasswordField verifPasswordFieldModif;
+    private javax.swing.JLabel verifPasswordLabelModif;
     // End of variables declaration//GEN-END:variables
 
     public void setId(Object id) {
@@ -250,7 +262,11 @@ public class ModifDialog extends javax.swing.JDialog {
         this.textFieldPassword.setText(selectedPassword);
     }
 
-    public String getPassword() {
-        return this.textFieldPassword.getText();
+    public char[] getPassword() {
+        return this.textFieldPassword.getPassword();
+    }
+    
+    public char[] getVerifPassword() {
+        return this.verifPasswordFieldModif.getPassword();
     }
 }

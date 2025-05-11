@@ -130,8 +130,13 @@ public class MainView extends javax.swing.JFrame {
         return mess;
     }
 
-    public int getSelectedId() { // Retourne l'id de l'utilisateur sélectionné (MODIF)
-        return (int) this.usersList.getModel().getValueAt(this.usersList.getSelectedRow(), 0);
+    public Integer getSelectedId() { // Retourne l'id de l'utilisateur sélectionné (MODIF)
+        int selectedRow = this.usersList.getSelectedRow();
+        
+        if (selectedRow == -1) {
+            return null;
+        }
+        return (Integer) this.usersList.getModel().getValueAt(selectedRow, 0);
     }
 
     public String getSelectedNom() { // Retourne le nom de l'utilisateur sélectionné (MODIF)

@@ -6,6 +6,9 @@ package control;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.User;
@@ -49,64 +52,89 @@ public class MainControl implements PropertyChangeListener {
                 this.ajoutDialog.setVisible(true);
                 break;
             case "deleteUser":
-                // Retourne l'option choisie par l'utilisateur en int.
-                int confirm = JOptionPane.showConfirmDialog(
-                        this.view,
-                        this.view.message("Voulez-vous supprimer cet utilisateur ?"),
-                        "Confirmation de suppression",
-                        JOptionPane.YES_NO_CANCEL_OPTION
-                );
+                Integer selectedUserId = this.view.getSelectedId(); // Retourne l'id de l'utilsiateur sélectionné
 
-                // Si l'utilisateur à cliqué sur "YES" alors le delete s'effectue.
-                if (confirm == JOptionPane.YES_OPTION) {
+                if (selectedUserId == null) {
                     try {
-                        int selectedUserId = this.view.getSelectedId(); // Retourne l'utilisateur sélectionné dans la table.
-                        this.userListModel.delete(selectedUserId); // Supprime l'utilisateur selon l'id de l'utilisateur sélectionné.
-
-                        JOptionPane.showMessageDialog(this.view, "Utilisateur supprimé avec succès.");
+                        throw new Exception("Aucun utilisateur sélectionné");
                     } catch (ArrayIndexOutOfBoundsException e) {
                         JOptionPane.showMessageDialog(this.view, "Aucun utilisateur sélectionné.");
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(this.view, "Aucun utilisateur sélectionné");
                     }
-                }
-                // Sinon la suppression est annulée.
+                    break;
+                } 
+                // Retourne l'option choisie par l'utilisateur en int.
+                int confirm = JOptionPane.showConfirmDialog(
+                        this.view,
+                        this.view.message("Voulez-vous supprimer cet utilisateur ?"),
+                        "Confirmation de suppression",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                // Si l'utilisateur à cliqué sur "YES" alors le delete s'effectue.
+                if (confirm == JOptionPane.YES_OPTION) {
+                    this.userListModel.delete(selectedUserId); // Supprime l'utilisateur selon l'id de l'utilisateur sélectionné.
+                    JOptionPane.showMessageDialog(this.view, "Utilisateur supprimé avec succès.");
+                } // Sinon la suppression est annulée.
                 else {
                     JOptionPane.showMessageDialog(this.view, "Suppression annulée.");
                 }
                 break;
+
             case "openModifDialog": // Affiche le dialog avec toute les données de l'utilisateur dedans.
-                modifDialog.setId(this.view.getSelectedId());
-                modifDialog.setNom(this.view.getSelectedNom());
-                modifDialog.setPrenom(this.view.getSelectedPrenom());
-                modifDialog.setEmail(this.view.getSelectedEmail());
-                modifDialog.setIdentifiant(this.view.getSelectedIdentifiant());
-                modifDialog.setPassword(this.view.getSelectedPassword());
-
-                modifDialog.setVisible(true);
+                try {
+                    modifDialog.setId(this.view.getSelectedId());
+                    modifDialog.setNom(this.view.getSelectedNom());
+                    modifDialog.setPrenom(this.view.getSelectedPrenom());
+                    modifDialog.setEmail(this.view.getSelectedEmail());
+                    modifDialog.setIdentifiant(this.view.getSelectedIdentifiant());
+                    modifDialog.setPassword(this.view.getSelectedPassword());
+                    modifDialog.setVisible(true);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    JOptionPane.showMessageDialog(this.view, "Aucun utilisateur sélectionné.");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this.view, "Aucun utilisateur sélectionné");
+                }
                 break;
-            case "updateUser": // Effectue la méthode update dans le model userList qui va exécuter la méthode delete de UtilisateurDAO avec les données fournies.
-                userListModel.update(
-                        modifDialog.getId(),
-                        modifDialog.getNom(),
-                        modifDialog.getPrenom(),
-                        modifDialog.getEmail(),
-                        modifDialog.getIdentifiant(),
-                        modifDialog.getPassword());
 
-                modifDialog.setVisible(false);
+            case "updateUser": // Effectue la méthode update dans le model userList qui va exécuter la méthode delete de UtilisateurDAO avec les données fournies.
+                if (Arrays.equals(modifDialog.getPassword(), modifDialog.getVerifPassword())) {
+                    userListModel.update(
+                            modifDialog.getId(),
+                            modifDialog.getNom(),
+                            modifDialog.getPrenom(),
+                            modifDialog.getEmail(),
+                            modifDialog.getIdentifiant(),
+                            String.valueOf(modifDialog.getPassword()));
+
+                    modifDialog.setVisible(false);
+                } else {
+                    try {
+                        throw new Exception("Mots de passes non identiques");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this.view, "Mots de passes non identiques");
+                    }
+                }
                 break;
 
             case "validNewUser":
-                userListModel.create(
-                        ajoutDialog.getNom(),
-                        ajoutDialog.getPrenom(),
-                        ajoutDialog.getEmail(),
-                        ajoutDialog.getIdentifiant(),
-                        ajoutDialog.getPassword()
-                );
-
-                ajoutDialog.setVisible(false);
+                if (Arrays.equals(ajoutDialog.getPassword(), ajoutDialog.getPasswordVerif())) {
+                    userListModel.create(
+                            ajoutDialog.getNom(),
+                            ajoutDialog.getPrenom(),
+                            ajoutDialog.getEmail(),
+                            ajoutDialog.getIdentifiant(),
+                            String.valueOf(ajoutDialog.getPassword())
+                    );
+                    ajoutDialog.setVisible(false);
+                } else {
+                    try {
+                        throw new Exception("Mots de passes non identiques");
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this.view, "Mots de passes non identiques");
+                    }
+                }
 
                 break;
         }

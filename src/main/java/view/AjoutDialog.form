@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -23,73 +23,81 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPrenom" min="-2" max="-2" attributes="0"/>
-                              <Component id="JNom" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jIdentifiant" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="JTextPrenom" alignment="0" pref="241" max="32767" attributes="0"/>
-                          <Component id="jTextNom" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextPassword" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jMail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JTextIdentifiant" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="JAjouter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
-                      <Component id="JAjouter" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="verifPasswordLabelAdd" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jIdentifiant" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPrenom" min="-2" max="-2" attributes="0"/>
+                          <Component id="JNom" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPassword" alignment="1" pref="77" max="32767" attributes="0"/>
+                              <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JTextPrenom" alignment="0" pref="426" max="32767" attributes="0"/>
+                          <Component id="jTextNom" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jMail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jTextPassword" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTextIdentifiant" alignment="0" max="32767" attributes="0"/>
+                          <Component id="verifPasswordFieldAdd" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="291" max="32767" attributes="0"/>
+              <EmptySpace pref="327" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextNom" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JNom" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextNom" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JNom" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPrenom" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextPrenom" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JTextPrenom" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPrenom" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jMail" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jMail" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jIdentifiant" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTextIdentifiant" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jIdentifiant" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTextIdentifiant" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jPassword" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPassword" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextPassword" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JAjouter" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="verifPasswordFieldAdd" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="verifPasswordLabelAdd" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="130" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JAjouter" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelButton" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="237" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -156,10 +164,17 @@
         <Property name="text" type="java.lang.String" value="Adresse Mail :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jMail">
+    <Component class="javax.swing.JFormattedTextField" name="jMail">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMailActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="verifPasswordFieldAdd">
+    </Component>
+    <Component class="javax.swing.JLabel" name="verifPasswordLabelAdd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="V&#xe9;rification du mot de passe :"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
